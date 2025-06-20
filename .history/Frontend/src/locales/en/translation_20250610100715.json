@@ -1,0 +1,30 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "live": "LIVE",
+    "marquee": [
+      "🚨 Major event unfolds in the city as emergency services respond",
+      "📈 Market hits record highs today amid economic optimism",
+      "💡 New tech trends in 2025 set to transform industries",
+      "🌞 Health experts share essential tips for summer wellness",
+      "🏆 Local sports team wins championship after thrilling final match"
+    ]
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "advertise": "Advertise",
+    "latestNews": "Latest News",
+    "contactUs": "Contact Us",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address",
+    "subscribePlaceholder": "Subscribe to newsletter",
+    "subscribeButton": "Subscribe",
+    "poweredBy": "Powered by PigoPi"
+  }
+}
