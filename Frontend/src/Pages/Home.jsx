@@ -144,24 +144,27 @@ const Home = () => {
   return (
     <div className="bg-gray-50 font-hindi w-full min-h-screen">
       {/* Breaking News Ticker */}
-      <div className="bg-red-600 text-white py-2 px-4">
-        <div className="container mx-auto flex items-center">
-          <span className="font-bold mr-4 bg-black px-3 py-1 rounded-md animate-pulse">ब्रेकिंग न्यूज़</span>
-          <div className="overflow-hidden whitespace-nowrap">
-            <div className="inline-block animate-marquee">
-              {marqueeItems.map((item, index) => (
-                <span key={index} className="mx-8">• {item}</span>
-              ))}
-            </div>
-          </div>
-        </div>
+<div className="bg-red-600 text-white py-2 px-4 borde">
+  <div className="container mx-auto flex items-center overflow-hidden space-x-4">
+    <span className="font-bold bg-black px-6 py-1 rounded-md animate-pulse border border-yellow-500 whitespace-nowrap">
+      ब्रेकिंग न्यूज़
+    </span>
+    <div className="overflow-hidden whitespace-nowrap w-full">
+      <div className="animate-marquee">
+        {marqueeItems.map((item, index) => (
+          <span key={index} className="mx-8 inline-block font-bold">• {item}</span>
+        ))}
       </div>
+    </div>
+  </div>
+</div>
+
 
       {/* Top Section */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-6">
+      <div className="container mx-auto px-4 py-2">
+        <div className="flex flex-col lg:flex-row gap-3">
           {/* Welcome Banner - Centered Content */}
-          <div className="w-full lg:w-1/2 h-[512px] relative group text-center">
+          <div className="w-full lg:w-1/2 h-[512px] relative group text-center ">
             <div className="h-full relative rounded-xl overflow-hidden shadow-2xl transform transition-all duration-500 group-hover:shadow-3xl">
               <img 
                 src={heroBanner.images?.[0] || 'https://navbharattimes.indiatimes.com/thumb/113599197/bihar-politics-sound-power-change-113599197.jpg?imgsize=62408&width=1600&height=900&resizemode=75'} 
@@ -194,9 +197,9 @@ const Home = () => {
           </div>
           
           {/* Right Side Column */}
-          <div className="w-full lg:w-1/2 flex flex-col lg:flex-row gap-6 text-center">
+          <div className="w-full lg:w-1/2 flex flex-col lg:flex-row gap-3 text-center">
             {/* News Banners - Centered Content */}
-            <div className="w-full lg:w-1/2 flex flex-col gap-6">
+            <div className="w-full lg:w-1/2 flex flex-col gap-3">
               {displayArticles.map((banner, index) => (
                 <Link 
                   to={banner.link || '#'} 
@@ -248,9 +251,10 @@ const Home = () => {
                     </div>
                     <span className="text-sm text-gray-600 font-medium">YouTube</span>
                   </div>
-                  <button className="mt-3 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300">
+                  {/* <button className="mt-3 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300">
                     सब्सक्राइब करें
-                  </button>
+                  </button> */}
+                  
                 </div>
               </div>
             </div>
@@ -328,7 +332,7 @@ const Home = () => {
       </div>
 
       {/* Newsletter Subscription */}
-      <div className="bg-gradient-to-r from-blue-600 to-blue-800 py-12 px-4">
+      <div className="bg-gradient-to-r from-blue-600 to-blue-800 py-15 px-4">
         <div className="container mx-auto max-w-4xl text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">हमारे न्यूज़लेटर की सदस्यता लें</h2>
           <p className="text-white/90 mb-6 max-w-2xl mx-auto">दैनिक समाचार अपडेट सीधे अपने इनबॉक्स में प्राप्त करें। बिहार और झारखंड की ताज़ा खबरें, विश्लेषण और अपडेट्स।</p>
@@ -336,7 +340,7 @@ const Home = () => {
             <input 
               type="email" 
               placeholder="आपका ईमेल पता" 
-              className="flex-grow px-4 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+              className="flex-grow px-4 py-3 border-white bg-white text-black rounded-lg outline focus:ring-2 focus:ring-blue-300"
             />
             <button className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-medium shadow-md transition-colors duration-300 whitespace-nowrap">
               सब्सक्राइब करें

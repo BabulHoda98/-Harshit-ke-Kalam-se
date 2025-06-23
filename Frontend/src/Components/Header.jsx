@@ -1,9 +1,10 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [language, setLanguage] = React.useState('english');
+  const location = useLocation();
 
   const navItems = {
     hindi: [
@@ -56,24 +57,7 @@ const englishMarqueeItems = [
   return (
     <header className="sticky top-0 z-50 bg-white shadow-md notranslate">
       {/* Compact Language Toggle */}
-      {/* <div className="bg-gradient-to-r from-green-400 to-red-300 via-yellow-400  text-white text-xs py-1 border border-red-500">
-        <div className="container max-w-[1350px] mx-auto px-6 flex justify-end">
-          <div className="flex items-center space-x-1">
-            <button 
-              onClick={() => setLanguage('hindi')}
-              className={`px-2 py-0.5 rounded-sm ${language === 'hindi' ? 'bg-zinc-400 text-indigo-800 font-bold' : 'text-zinc-900'}`}
-            >
-              हिंदी
-            </button>
-            <button 
-              onClick={() => setLanguage('english')}
-              className={`px-2 py-0.5 rounded-sm ${language === 'english' ? 'bg-white text-indigo-800 font-bold' : 'text-zinc-900'}`}
-            >
-              English
-            </button>
-          </div>
-        </div>
-      </div> */}
+     
       <div className="bg-gradient-to-r from-gray-900 to-black text-gray-200 text-xs py-1.5">
         <div className="container max-w-screen-2xl mx-auto px-4 flex justify-between items-center">
           <div className="flex items-center">
@@ -94,13 +78,21 @@ const englishMarqueeItems = [
           <div className="flex items-center space-x-1">
             <button 
               onClick={() => setLanguage('hindi')}
-              className={`px-3 py-0.5 rounded-md transition-all duration-200 flex items-center ${language === 'hindi' ? 'bg-amber-500 text-gray-900 font-bold' : 'text-gray-300 hover:text-white'}`}
+              className={`px-3 py-0.5 rounded-md transition-all duration-200 flex items-center ${
+                language === 'hindi' 
+                  ? 'bg-amber-500 text-gray-900 font-bold shadow-inner scale-105' 
+                  : 'text-gray-300 hover:text-white hover:bg-gray-800'
+              }`}
             >
               <span className="mr-1">🇮🇳</span> हिंदी
             </button>
             <button 
               onClick={() => setLanguage('english')}
-              className={`px-3 py-0.5 rounded-md transition-all duration-200 flex items-center ${language === 'english' ? 'bg-amber-500 text-gray-900 font-bold' : 'text-gray-300 hover:text-white'}`}
+              className={`px-3 py-0.5 rounded-md transition-all duration-200 flex items-center ${
+                language === 'english' 
+                  ? 'bg-amber-500 text-gray-900 font-bold shadow-inner scale-105' 
+                  : 'text-gray-300 hover:text-white hover:bg-gray-800'
+              }`}
             >
               <span className="mr-1">🌐</span> English
             </button>
@@ -108,7 +100,7 @@ const englishMarqueeItems = [
         </div>
       </div>
 
-      {/* Main Navigation - Now with Full Visible Items */}
+      {/* Main Navigation */}
       <nav className="bg-gradient-to-r from-indigo-800 via-red-700 to-indigo-800 text-white">
         <div className="container max-w-[1350px] mx-auto px-6 py-2 flex items-center justify-between">
           {/* Logo */}
@@ -132,15 +124,39 @@ const englishMarqueeItems = [
           </Link>
 
           {/* Desktop Navigation - Full Width with Scroll */}
-          <div className="hidden md:flex flex-1 overflow-x-auto scrollbar-hide ml-6 ">
+          <div className="hidden md:flex flex-1 overflow-x-auto scrollbar-hide ml-6">
             <div className="flex space-x-6 mx-auto">
               {navItems[language].map((item, index) => (
                 <Link
                   key={index}
                   to={item.path}
-                  className="whitespace-nowrap hover:text-yellow-300 transition-colors duration-200 px-1 text-sm border-b-2 border-transparent hover:border-yellow-300 flex-shrink-0"
+                  className={`
+                    whitespace-nowrap transition-colors duration-300 px-1 pb-1 text-sm
+                    flex-shrink-0 relative group
+                    ${
+                      location.pathname === item.path
+                        ? "text-yellow-300"
+                        : "text-white hover:text-yellow-300"
+                    }
+                  `}
                 >
                   {item.name}
+                  
+                  {/* Animated underline - visible on hover/active */}
+                  <span className={`
+                    absolute left-0 -bottom-0.5 w-full h-0.5 bg-yellow-300 rounded-full
+                    transition-transform duration-300 origin-left
+                    ${
+                      location.pathname === item.path
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100"
+                    }
+                  `}></span>
+                  
+                  {/* Glowing dot for active item */}
+                  {location.pathname === item.path && (
+                    <span className="absolute -top-1 right-0 w-1.5 h-1.5 bg-yellow-300 rounded-full animate-ping"></span>
+                  )}
                 </Link>
               ))}
             </div>
@@ -150,7 +166,7 @@ const englishMarqueeItems = [
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-white  hover:text-yellow-500 focus:outline-none p-1 bg-opacity-10"
+              className="text-white hover:text-yellow-500 focus:outline-none p-1 bg-opacity-10"
               aria-label="Toggle menu"
             >
               {isOpen ? (
@@ -170,46 +186,33 @@ const englishMarqueeItems = [
       {/* Mobile Menu */}
       {isOpen && (
         <div className="md:hidden bg-gradient-to-b from-indigo-800 to-blue-900 text-white">
-          <div className="container mx-auto px-4 py-2 grid grid-cols-2 gap-2">
+          <div className="container mx-auto px-4 py-2 grid grid-cols-2 gap-3">
             {navItems[language].map((item, index) => (
               <Link
                 key={index}
                 to={item.path}
-                className="px-2 py-1.5 rounded hover:bg-indigo-700 transition-colors duration-200 text-xs"
+                className={`
+                  px-3 py-2.5 rounded-lg transition-all duration-300 text-sm
+                  flex items-center justify-center text-center
+                  ${
+                    location.pathname === item.path
+                      ? "bg-yellow-500 text-gray-900 font-bold shadow-lg"
+                      : "text-white hover:bg-indigo-700 hover:font-medium"
+                  }
+                `}
                 onClick={() => setIsOpen(false)}
               >
                 {item.name}
+                {location.pathname === item.path && (
+                  <span className="ml-2 w-2 h-2 bg-amber-800 rounded-full animate-pulse"></span>
+                )}
               </Link>
             ))}
           </div>
         </div>
       )}
 
-      {/* Live Ticker with Hindi Content */}
-      {/* <div className="relative bg-gradient-to-r from-yellow-50 to-amber-50 border-t border-b border-gray-200 py-1.5 overflow-hidden">
-        <div className="container mx-auto px-6 flex items-center relative">
-    
-          <div className="flex-shrink-0 bg-gradient-to-r from-red-600 to-red-700 text-white px-3 py-0.5 rounded-full font-medium mr-4 flex items-center border border-white shadow">
-            <div className="w-1.5 h-1.5 bg-white rounded-full mr-1.5 animate-pulse"></div>
-            लाइव
-          </div>
-
-  
-          <div className="absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-amber-50 via-amber-50 to-transparent z-10" />
-          <div className="absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-amber-50 via-amber-50 to-transparent z-10" />
-
-
-          <div className="flex-1 whitespace-nowrap overflow-hidden">
-            <div className="animate-marquee inline-flex space-x-12 min-w-full">
-              {hindiMarqueeItems.map((item, index) => (
-                <span key={index} className="text-gray-800 text-sm font-medium">
-                  {item}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div> */}
+      
       <div className="relative bg-gray-200 border-t border-b border-gray-300 py-1.5 overflow-hidden">
         <div className="container mx-auto px-6 flex items-center relative">
           {/* LIVE Badge */}
