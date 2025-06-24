@@ -10,8 +10,8 @@ const AdminLogin = () => {
 
   // State for Home page sections - matching Home.jsx structure
   const [heroBanner, setHeroBanner] = useState({
-    title: 'हर्षित के कलम से में आपका स्वागत है',
-    subtitle: 'बिहार और झारखंड की ताज़ा खबरें, राजनीति, अपराध और करियर समाचार',
+    title: '',
+    subtitle: '',
     button1Text: 'ताज़ा खबरें पढ़ें',
     button2Text: 'वीडियो देखें',
     images: [
@@ -415,10 +415,26 @@ const AdminLogin = () => {
     <div className="min-h-screen bg-gray-100 p-4 md:p-8 overflow-auto space-y-6 md:space-y-8">
       
       <h1 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6">Admin Dashboard</h1>
-      <div className="bg-white p-6 rounded shadow-md">
-        <h2 className="text-xl font-semibold mb-4">Welcome to Admin Dashboard</h2>
+      {/* <div className="bg-white p-6 rounded shadow-md border border-red-500 space-between">
+        <h2 className="text-xl font-semibold mb-4">Welcome to Admin Dashboard</h2><span><button className="bg-amber-400 rounded-full">Submit</button></span>
         <p className="text-gray-600">You are logged in as admin.</p>
-      </div>
+        
+      </div> */}
+      <div className="bg-white p-6 rounded shadow-mdrelative">
+  {/* Heading and Button in same row */}
+  <div className="flex items-center justify-between mb-4">
+    <h2 className="text-xl font-semibold">Welcome to Admin Dashboard</h2>
+    <button
+        onClick={handleSave}
+        className="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition">
+        Save Changes
+      </button>
+  </div>
+
+  {/* Message below */}
+  <p className="text-gray-600">You are logged in as admin.</p>
+</div>
+
 
       {/* Hero Banner Section */}
       <section className="relative bg-gradient-to-br from-yellow-50 to-white p-0 rounded-xl shadow-lg mt-8 mb-12 border-t-4 border-yellow-500 max-w-2xl mx-auto">
@@ -796,7 +812,7 @@ const AdminLogin = () => {
 
       <button
         onClick={handleSave}
-        className="bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition"
+        className="bg-red-600 text-white px-6 py-2 rounded-full hover:bg-blue-700 transition"
       >
         Save Changes
       </button>

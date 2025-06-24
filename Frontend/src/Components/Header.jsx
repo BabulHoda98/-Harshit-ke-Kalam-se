@@ -3,7 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isOpen, setIsOpen] = React.useState(false);
-  const [language, setLanguage] = React.useState('english');
+  const [language, setLanguage] = React.useState('hindi');
   const location = useLocation();
 
   const navItems = {
@@ -40,18 +40,25 @@ const Header = () => {
   };
 
   const hindiMarqueeItems = [
-    "बिहार: मुख्यमंत्री ने लॉन्च की नई योजना, 10 लाख लोगों को मिलेगा लाभ",
-    "चुनाव आयोग ने जारी की नई गाइडलाइन्स, सभी पार्टियों को भेजा नोटिस",
-    "झारखंड: खनन घोटाले में 3 अधिकारी गिरफ्तार, 50 करोड़ का घोटाला",
-    "क्रिकेट: टीम इंडिया ने जीता T20 सीरीज, विराट कोहली को मिला मैन ऑफ द सीरीज अवार्ड",
-    "बॉलीवुड: सलमान खान की नई फिल्म 'टाइगर 3' ने बनाया बॉक्स ऑफिस पर नया रिकॉर्ड"
+    "हर्षित के कलम से",
+    "विचारों की अभिव्यक्ति",
+    "हर्षित के कलम से",
+    "विचारों की अभिव्यक्ति",
+    "हर्षित के कलम से",
+    "विचारों की अभिव्यक्ति",
+    "हर्षित के कलम से",
+    "विचारों की अभिव्यक्ति",
   ];
 const englishMarqueeItems = [
-    "Bihar: Chief Minister launches new scheme, 1 million people to benefit",
-    "Election Commission issues new guidelines, sends notice to all parties",
-    "Jharkhand: 3 officials arrested in mining scam, ₹50 crore embezzlement",
-    "Cricket: Team India wins T20 series, Virat Kohli awarded Player of the Series",
-    "Bollywood: Salman Khan's new film 'Tiger 3' sets new box office record"
+    "Harshit ke Kalam se",
+    "Unleashing Thoughts",
+    "Harshit ke Kalam se",
+    "Unleashing Thoughts",
+    "Harshit ke Kalam se",
+    "Unleashing Thoughts",
+    "Harshit ke Kalam se",
+    "Unleashing Thoughts",
+   
   ];
 
   return (
